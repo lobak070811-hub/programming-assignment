@@ -79,7 +79,7 @@ void saveStudent(Student s)
 
     if(file.is_open())
     {
-        file << "A" << setw(3) << setfill('0') << id << ","
+        file << "S" << setw(3) << setfill('0') << id << ","
              << s.name << ","
              << s.phone << ","
              << s.email << "@gmail.com" << ","
