@@ -1,51 +1,88 @@
-#include <fstream>
 #include <iostream>
+#include <fstream>
 #include <string>
+#include <iomanip>
+#include <sstream>
 
 using namespace std;
 
 struct Owner
 {
-	int id;
-	string name;
-	string phone;
-	string email;
-	string password;
+    string id;
+    string name;
+    string phone;
+    string email;
+    string password;
 };
 
-Owner inputOwner()
-{
-    Owner o;
+int defaultOwnerID();
+void inputOwner(Owner &ow);
+void saveOwner(Owner o);
+void array_ownerlist();
+void displayOwner();
 
-    cout << "Owner ID   : ";
-    cin >> o.id;
-    cin.ignore();
+int main()
+{
+    struct Owner o;
+
+    inputOwner(o);
+
+    saveOwner(o);
+    
+    array_ownerlist();
+
+    displayOwner();
+
+    return 0;
+}
+
+int defaultOwnerID()
+{
+    ifstream file("Owner.txt");
+
+    string line;
+    int count = 0;
+
+    while(getline(file, line))
+    {
+        count++;
+    }
+
+    file.close();
+
+    return count + 1;
+}
+
+void inputOwner(Owner &ow)
+{
+    Owner o;//Owner
 
     cout << "Name       : ";
-    getline(cin, o.name);
+    getline(cin, ow.name);
 
     cout << "Phone      : ";
-    getline(cin, o.phone);
+    getline(cin, ow.phone);
 
     cout << "Email      : ";
-    getline(cin, o.email);
+    getline(cin, ow.email);
 
     cout << "Password   : ";
-    getline(cin, o.password);
+    getline(cin, ow.password);
 
-    return o;
 }
 
 void saveOwner(Owner o)
 {
-    ofstream file("owner.txt", ios::app);
+    ofstream file("Owner.txt", ios::app);
+    
+    int id = defaultOwnerID();
 
     if(file.is_open())
     {
-        file << o.id << ", "
-             << o.name << ", "
-             << o.phone << ", "
-             << o.email << ", "
+        file << "O" << setw(3) << setfill('0') << id << ","
+             << o.name << ","
+             << o.phone << ","
+             << o.email << "@gmail.com" << ","
              << o.password << endl;
 
         file.close();
@@ -58,31 +95,59 @@ void saveOwner(Owner o)
     }
 }
 
+Owner ownerList[50];
+int ownerCount = 0;
+
+void array_ownerlist()
+{
+	ifstream file("Owner.txt");
+	
+	if(!file)
+	{
+		cout << "Cannot open owner.txt" << endl;
+		return;
+	}
+
+	string line;
+
+	while(getline(file, line))
+	{
+    	stringstream ss(line);
+
+    	getline(ss, ownerList[ownerCount].id, ',');
+    	getline(ss, ownerList[ownerCount].name, ',');
+    	getline(ss, ownerList[ownerCount].phone, ',');
+    	getline(ss, ownerList[ownerCount].email, ',');
+    	getline(ss, ownerList[ownerCount].password);
+
+    	ownerCount++;
+	}
+
+	file.close();
+}
+
 void displayOwner()
 {
-    ifstream file("owner.txt");
+	ifstream file("Owner.txt");
 
     string line;
 
-    cout << "\n====== Owner List ======\n";
-
-    while(getline(file, line))
-    {
-        cout << line << endl;
-    }
-
-    file.close();
-}
-
-int main()
-{
-	Owner o;
-
-    o = inputOwner();
-
-    saveOwner(o);
-
-    displayOwner();
-
-    return 0;
+    cout << "\n===== Owner List =====\n";
+    
+    cout << left
+    	 << setw(8)  << "ID"
+    	 << setw(20) << "Name"
+    	 << setw(15) << "Phone"
+    	 << setw(35) << "Email"
+    	 << endl;
+    	 
+	for(int i = 0; i < ownerCount; i++)
+	{
+		cout << left
+			 << setw(8)  << ownerList[i].id
+			 << setw(20) << ownerList[i].name
+			 << setw(15) << ownerList[i].phone
+			 << setw(35) << ownerList[i].email
+			 << endl;
+	}
 }
