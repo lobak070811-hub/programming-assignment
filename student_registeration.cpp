@@ -6,13 +6,6 @@
 
 using namespace std;
 
-struct Student;
-int defaultStudentID();
-int Student_inputStudent();
-void saveStudent(Student s);
-void arraystudentlist();
-void displayStudent();
-
 struct Student
 {
     string id;
@@ -21,6 +14,27 @@ struct Student
     string email;
     string password;
 };
+
+int defaultStudentID();
+void inputStudent(Student &stu);
+void saveStudent(Student s);
+void arraystudentlist();
+void displayStudent();
+
+int main()
+{
+    struct Student s;
+
+    inputStudent(s);
+
+    saveStudent(s);
+    
+    arraystudentlist();
+
+    displayStudent();
+
+    return 0;
+}
 
 int defaultStudentID()
 {
@@ -39,23 +53,22 @@ int defaultStudentID()
     return count + 1;
 }
 
-Student inputStudent()
+void inputStudent(Student &stu)
 {
     Student s;//Student
 
     cout << "Name       : ";
-    getline(cin, s.name);
+    getline(cin, stu.name);
 
     cout << "Phone      : ";
-    getline(cin, s.phone);
+    getline(cin, stu.phone);
 
     cout << "Email      : ";
-    getline(cin, s.email);
+    getline(cin, stu.email);
 
     cout << "Password   : ";
-    getline(cin, s.password);
+    getline(cin, stu.password);
 
-    return s;
 }
 
 void saveStudent(Student s)
@@ -139,17 +152,3 @@ void displayStudent()
 	}
 }
 
-int main()
-{
-    Student s;
-
-    s = inputStudent();
-
-    saveStudent(s);
-    
-    arraystudentlist();
-
-    displayStudent();
-
-    return 0;
-}
