@@ -1,3 +1,5 @@
+#include "header.h" 
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -21,7 +23,7 @@ void saveOwner(Owner o);
 void array_ownerlist();
 void displayOwner();
 
-int main()
+void ownerRegister()//main function
 {
     struct Owner o;
 
