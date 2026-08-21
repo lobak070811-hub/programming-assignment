@@ -34,8 +34,6 @@ void ownerRegister()//main function
     array_ownerlist();
 
     displayOwner();
-
-    return 0;
 }
 
 int defaultOwnerID()
