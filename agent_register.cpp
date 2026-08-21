@@ -35,8 +35,6 @@ void agentRegister()//main function
     array_agentlist();
 
     displayAgent();
-
-    return 0;
 }
 
 int defaultAgentID()
@@ -83,10 +81,10 @@ void saveAgent(Agent a)
     if(file.is_open())
     {
         file << "A" << setw(3) << setfill('0') << id << ","
-             << o.name << ","
-             << o.phone << ","
-             << o.email << "@gmail.com" << ","
-             << o.password << endl;
+             << a.name << ","
+             << a.phone << ","
+             << a.email << "@gmail.com" << ","
+             << a.password << endl;
 
         file.close();
 
