@@ -23,7 +23,7 @@ void saveStudent(Student s);
 void arraystudentlist();
 void displayStudent();
 
-int main()
+void studentRegister()//main function
 {
     struct Student s;
 
