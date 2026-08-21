@@ -4,6 +4,15 @@
 
 using namespace std;
 
+void mainMenu();
+
+int main(){
+	
+	mainMenu();
+	
+	return 0;
+}
+
 void mainMenu()
 {
     int choice;
@@ -39,7 +48,5 @@ void mainMenu()
                 cout << "\nInvalid choice.\n";
         }
     }
-
-    return 0;
 }
 
