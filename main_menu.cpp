@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int main()
+void mainMenu()
 {
     int choice;
 
