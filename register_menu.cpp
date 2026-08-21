@@ -4,6 +4,10 @@
 
 using namespace std;
 
+void studentRegister();
+void ownerRegister();
+void agentRegister();
+
 void registerMenu()
 {
     int choice;
