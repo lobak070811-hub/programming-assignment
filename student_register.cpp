@@ -34,8 +34,6 @@ void studentRegister()//main function
     arraystudentlist();
 
     displayStudent();
-
-    return 0;
 }
 
 int defaultStudentID()
