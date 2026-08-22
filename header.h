@@ -3,14 +3,14 @@
 
 #include <iostream>
 
-void mainMenu;
+void mainMenu();
 
-void registerMenu;
-void studentRegister;
-void ownerRegister;
-void agentRegister;
+void registerMenu();
+void studentRegister();
+void ownerRegister();
+void agentRegister();
 
-void login_menu;
+void login_menu();
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
