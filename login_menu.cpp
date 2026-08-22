@@ -2,6 +2,6 @@
 
 #include <iostream>
 
-void loginMenu(){//main function
+void login_menu(){//main function
 	
 }
