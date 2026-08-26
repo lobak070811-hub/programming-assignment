@@ -59,6 +59,7 @@ void inputAgent(Agent &ag)
     Agent a;//Owner
 
     cout << "Name       : ";
+    cin.ignore();
     getline(cin, ag.name);
 
     cout << "Phone      : ";
