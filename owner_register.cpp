@@ -58,6 +58,7 @@ void inputOwner(Owner &ow)
     Owner o;//Owner
 
     cout << "Name       : ";
+    cin.ignore();
     getline(cin, ow.name);
 
     cout << "Phone      : ";
