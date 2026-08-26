@@ -58,6 +58,7 @@ void inputStudent(Student &stu)
     Student s;//Student
 
     cout << "Name       : ";
+    cin.ignore(); 
     getline(cin, stu.name);
 
     cout << "Phone      : ";
