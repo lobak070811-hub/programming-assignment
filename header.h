@@ -8,14 +8,14 @@ extern string currentName;
 extern string currentPhone;
 extern string currentRole;
 
-void mainMenu;
+void mainMenu();
 
-void registerMenu;
-void studentRegister;
-void ownerRegister;
-void agentRegister;
+void registerMenu();
+void studentRegister();
+void ownerRegister();
+void agentRegister();
 
-void loginMenu;
+void loginMenu();
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
