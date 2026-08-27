@@ -98,7 +98,7 @@ void login(){//main function
     	cout << "\nLogin Successful!\n";
     	cout << "Welcome, " << currentName << "!\n";
 
-    	ownerMenu();
+    	ownerPropertyMenu();
 
     	return;
 	}
@@ -106,11 +106,21 @@ void login(){//main function
     // Check Agent
     if (checkLogin("Agent.txt", inputID, inputPassword))
     {
-        cout << "\nLogin Successful!\n";
-        cout << "Welcome, Agent " << inputID << "!\n";
+    	currentID = inputID;
 
-        // Later:
-        // agentMenu();
+    	getUserInfo(
+        	"Agent.txt",
+        	inputID,
+        	currentName,
+        	currentPhone
+    	);
+
+    	currentRole = "Agent";
+    	
+        cout << "\nLogin Successful!\n";
+        cout << "Welcome, " << currentName << "!\n";
+
+        agentPropertyMenu();
 
         return;
     }
