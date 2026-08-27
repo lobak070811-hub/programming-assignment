@@ -17,6 +17,11 @@ void agentRegister();
 
 void loginMenu();
 
+void ownerPropertyMenu();
+void agentPropertyMenu();
+void addProperty();
+void editProperty();
+
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 #endif //end code
