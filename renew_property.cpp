@@ -1,4 +1,12 @@
-void editProperty(){
+#include "header.h"
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+void editProperty(){//main function
 	
     string searchID;
 
