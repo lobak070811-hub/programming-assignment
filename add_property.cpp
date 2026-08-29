@@ -3,23 +3,48 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
-void addProperty(){//main function
+struct Property{
+	
+	string propertyID;
+	string roomType;
+	string propertyName;
+	string location;
+	double price;
+	double area;
+	double distance;
+	string publisherID;
+	string publisherName;
+	string publisherPhone;
+	string publisherRole;
+	
+};
+
+string defaultPropertyID();
+void inputProperty();
+void displayCurrentInputProperty(const Property &p);
+
+void addProperty(){//mian function
+	
+	inputProperty();
+	
+}
+
+string defaultPropertyID(){
 	
     Property p;
-
-	string defaultPropertyID(){
 	
     ifstream file("Property.txt");
 
     int maxID = 0;
     string line;
 
-    while (getline(file, line))
+    while(getline(file, line))//when open file and read line by line
     {
-        if (line.empty())
+        if (line.empty())//skip the emtpy line if read an empty line
         {
             continue;
         }
@@ -27,14 +52,17 @@ void addProperty(){//main function
         stringstream ss(line);
 
         string propertyID;
-
-        getline(ss, propertyID, ',');
+		getline(ss, propertyID, ',');//read until first ','
 
         if (propertyID.length() > 1)
         {
-            int number = stoi(propertyID.substr(1));
+            int number;
+			
+			string numberPart = propertyID.substr(1);//'P001'will read from the second int '0'
+			stringstream convert(numberPart);//string to int
+			convert >> number; 
 
-            if (number > maxID)
+            if (number > maxID)//get the biggest ID in txt file
             {
                 maxID = number;
             }
@@ -45,33 +73,36 @@ void addProperty(){//main function
 
     maxID++;
 
+    string numberString;
+    stringstream convertID;
+    convertID << maxID;
+    numberString = convertID.str();
     string newID;
 
     if (maxID < 10)
     {
-        newID = "P00" + to_string(maxID);
+        newID = "P00" + numberString;
     }
     else if (maxID < 100)
     {
-        newID = "P0" + to_string(maxID);
+        newID = "P0" + numberString;
     }
     else
     {
-        newID = "P" + to_string(maxID);
+        newID = "P" + numberString;
     }
-
     return newID;
-	}
+}
+
+void inputProperty(){
 	
+	Property p;
+ 
 	p.propertyID = defaultPropertyID();
 		
     cout << "\n=============================\n";
     cout << "        ADD PROPERTY\n";
     cout << "=============================\n";
-
-    cout << "Property ID  : ";
-    cin >> p.propertyID;
-
     cout << "Room Type\n";
     cout << "1. Master\n";
     cout << "2. Middle\n";
@@ -118,10 +149,10 @@ void addProperty(){//main function
     cin >> p.distance;
 
     // Publisher information
-    p.publisherID = publisherID;
-    p.publisherName = publisherName;
-    p.publisherPhone = publisherPhone;
-    p.publisherRole = publisherRole;
+    p.publisherID = currentID;
+    p.publisherName = currentName;
+    p.publisherPhone = currentPhone;
+    p.publisherRole = currentRole;
 	
     ofstream file("Property.txt", ios::app);// Save to Property.txt
 
@@ -145,6 +176,11 @@ void addProperty(){//main function
          << endl;
 
     file.close();
+    
+    displayCurrentInputProperty(p);
+}
+
+void displayCurrentInputProperty(const Property &p){
 	
 	//show added property
     cout << "\n====================================\n";
@@ -163,4 +199,5 @@ void addProperty(){//main function
     cout << "Phone           : " << p.publisherPhone << endl;
 
     cout << "====================================\n";
+    
 }
